@@ -1,4 +1,70 @@
 <!DOCTYPE html>
 <html lang="cs">
-<head></head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ukázková stránka</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+        nav {
+            background-color: #444;
+            padding: 10px;
+        }
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+        }
+        .content {
+            flex: 1;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Container Menu</h1>
+    </header>
+
+    <nav>
+        <a href="#">Domů</a>
+        <a href="#">O nás</a>
+        <a href="#">Kontakt</a>
+    </nav>
+
+    <div class="content">
+        <h2>Obsah stránky</h2>
+        <p>Zde bude umístěn hlavní obsah stránky.</p>
+    </div>
+
+    <footer>
+        <p>Patička stránky &copy; 2024</p>
+    </footer>
+</div>
+
+</body>
 </html>
