@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vážený Aritmetický Průměr</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .grade-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    input {
+      padding: 10px;
+      font-size: 16px;
+      width: 45%;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      font-size: 16px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button#add-row {
+      background-color: #007bff;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    #result {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 18px;
+    }
+
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>Výpočet Váženého Aritmetického Průměru</h1>
+  <div id="input-fields">
+    <div class="grade-row">
+      <input type="number" class="grade" placeholder="Známka" min="1" max="5">
+      <input type="number" class="weight" placeholder="Váha" min="1">
+    </div>
+  </div>
+  <button id="add-row">Přidat další známku</button>
+  <button id="calculate">Spočítat průměr</button>
+
+  <div id="result"></div>
+</div>
+
+<script type="application/javascript" >
+
+  // Přidání dalšího řádku pro zadání známky a váhy
+  document.getElementById("add-row").addEventListener("click", function() {
+    const inputFields = document.getElementById("input-fields");
+    const gradeRow = document.createElement("div");
+    gradeRow.className = "grade-row";
+    gradeRow.innerHTML = `
+        <input type="number" class="grade" placeholder="Známka" min="1" max="5">
+        <input type="number" class="weight" placeholder="Váha" min="1">
+    `;
+    inputFields.appendChild(gradeRow);
+  });
+
+  // Výpočet váženého aritmetického průměru
+  document.getElementById("calculate").addEventListener("click", function() {
+    const grades = document.querySelectorAll(".grade");
+    const weights = document.querySelectorAll(".weight");
+
+    let totalWeightedSum = 0;
+    let totalWeight = 0;
+
+    grades.forEach((grade, index) => {
+      const gradeValue = parseFloat(grade.value);
+      const weightValue = parseFloat(weights[index].value);
+
+      if (!isNaN(gradeValue) && !isNaN(weightValue)) {
+        totalWeightedSum += gradeValue * weightValue;
+        totalWeight += weightValue;
+      }
+    });
+
+    if (totalWeight > 0) {
+      const weightedAverage = totalWeightedSum / totalWeight;
+      document.getElementById("result").textContent = `Vážený průměr: ${weightedAverage.toFixed(2)}`;
+    } else {
+      document.getElementById("result").textContent = "Zadej prosím platné známky a váhy.";
+    }
+  });
+
+</script>
+</body>
+</html>
